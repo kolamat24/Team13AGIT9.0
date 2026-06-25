@@ -19,7 +19,7 @@ function Dashboard() {
       </div>
 
       {/* STATS GRID */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8"></div>
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
         <StatCard
           title="Energy Usage"
           value="345 kWh"
