@@ -35,22 +35,58 @@ def otp_is_expired(created_at):
     return timezone.now() > expiry
 
 
-def send_otp_email(email, otp):
+def send_otp_email(email, otp, purpose="register"):
+    if purpose == "register":
 
-    subject = "Email Verification OTP"
+       subject = "Email Verification OTP"
 
-    message = f"""
+       message = f"""
 Hello,
 
-Your verification code is:
+Thank you for registering.
+
+Your One-Time Password (OTP) is:
 
 {otp}
 
-This OTP expires in 10 minutes.
+This OTP will be used to verify your email address.
+
+Do not share this code with anyone.
 
 Regards,
 Team Aerogleam
 """
+
+    elif purpose == "reset_password":
+        subject = "Password Reset OTP"
+
+        message = f"""
+
+Hello,
+
+We received a request to reset your password.
+
+Your One-Time Password (OTP) is:
+
+{otp}
+
+This OTP will be used to reset your password.
+
+If you did not request this password reset, please ignore this email.
+
+Regards,
+Team Aerogleam
+"""
+        
+    else:
+
+         subject = "OTP Code"
+
+         message = f"""
+Your OTP is:
+
+{otp}
+"""         
 
     send_mail(
         subject,
