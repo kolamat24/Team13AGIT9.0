@@ -31,7 +31,9 @@ class RegisterView(APIView):
 
             user.save()
 
-            send_otp_email(user.email, otp)
+            #send_otp_email(user.email, otp, purpose="register")
+
+            print("OTP:", otp)
 
             return Response(
                 {
